@@ -1,0 +1,24 @@
+karakter arr1[3];
+
+ata(arr1[0],a)
+ata(arr1[1],b)
+ata(arr1[2],c)
+
+karakter konkatli;
+
+ata(konkatli,arr1[0]+arr1[1]+arr1[2])
+
+karakter konkatli2;
+
+ata(konkatli2,a+b+ceyhan)
+
+eger(konkatli = konkatli2)
+basla
+topla(1,carp(2,cikar(17,bol(8,topla(1,2)))))
+bitir
+
+
+
+
+
+

@@ -1,0 +1,114 @@
+karakter arr[3];
+
+<typeCheck> --> tamsayi | ondalik | karakter id {| '[' int_constant | id ']' } ';'
+	    --> karakter id {| '[' int_constant | id ']' } ';' 
+            --> karakter arr1 {| '[' int_constant | id ']' } ';'
+            --> karakter arr1[ int_constant | id ']' } ';'
+            --> karakter arr1[3 ']' } ';'
+            --> karakter arr1[3] ';'
+            --> karakter arr1[3];
+---------------------------------------------------------------------------------
+ata(arr1[0],a)
+
+<assignop> --> ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( id , id { '[' int_constant | id ']'} {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( arr[0] , id { '[' int_constant | id ']'} {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( arr[0] , id ')' 
+--> ata ( arr[0] , a ')'    
+--> ata ( arr[0] , a )
+---------------------------------------------------------------------------------
+karakter konkatli;
+
+<typeCheck> --> tamsayi | ondalik | karakter id {| '[' int_constant | id ']' } ';'
+	    --> karakter id {| '[' int_constant | id ']' } ';' 
+            --> karakter konkatli {| '[' int_constant | id ']' } ';'
+            --> karakter konkatli ';'
+            --> karakter konkatli;
+----------------------------------------------------------------------------------
+ata(konkatli,arr1[0]+arr1[1]+arr1[2])
+
+<assignop> --> ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( id , id { '[' int_constant | id ']'} {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( konkantli, id { '[' int_constant | id ']'} {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( konkantli, arr1[0] { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')'
+--> ata ( konkantli, arr1[0] { | <additionop> | }')'
+--> ata ( konkantli, arr1[0] + { | <additionop> | }')'
+--> ata ( konkantli, arr1[0] + arr1[1] { | <additionop> | }')'
+--> ata ( konkantli, arr1[0] + arr1[1] + arr[2] ')'
+--> ata ( konkantli, arr1[0] + arr1[1] + arr[2] )
+-----------------------------------------------------------------------------------
+karakter konkatli2;
+
+<typeCheck> --> tamsayi | ondalik | karakter id {| '[' int_constant | id ']' } ';'
+	    --> karakter id {| '[' int_constant | id ']' } ';' 
+            --> karakter konkatli2 {| '[' int_constant | id ']' } ';'
+            --> karakter konkatli2 ';'
+            --> karakter konkatli2;
+-----------------------------------------------------------------------------------
+ata(konkatli,arr1[0]+arr1[1]+arr1[2])
+
+<assignop> --> ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( konkantli2, id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( konkantli2, arr1[0] { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')'
+--> ata ( konkantli2, arr1[0] { | <additionop> | }')'
+--> ata ( konkantli2, arr1[0] + id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( konkantli2, arr1[0] + arr[1] | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( konkantli2, arr1[0] + arr[1] { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( konkantli2, arr1[0] + arr[1] { | <additionop> }')' 
+--> ata ( konkantli2, arr1[0] + arr[1] + id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( konkantli2, arr1[0] + arr[1] + arr[2] | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( konkantli2, arr1[0] + arr[1] + arr[2] { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+--> ata ( konkantli2, arr1[0] + arr[1] + arr[2] ')'
+--> ata ( konkantli2, arr1[0] + arr[1] + arr[2] )
+-----------------------------------------------------------------------------------
+eger(konkatli = konkatli2)baslatopla(1,carp(2,cikar(17,bol(8,topla(1,2)))))bitir
+
+<ifStatement> --> eger(<booleanCon>) basla <statement> {|<statement>}  bitir
+--> eger(<booleanCon>) basla <statement> {|<statement>}  bitir
+--> eger(<booleanCon> --> {dogru | yanlis |} id | int_constant | float_constant  '=' {| '!=' | '<' | '>' }  id | int_constant | float_constant) basla <statement> {|<statement>}  bitir
+--> eger(<booleanCon> --> id '=' {| '!=' | '<' | '>' }  id | int_constant | float_constant) basla <statement> {|<statement>}  bitir
+--> eger(<booleanCon> --> konkatli '=' id | int_constant | float_constant) basla <statement> {|<statement>}  bitir
+--> eger(<booleanCon> --> konkatli = id | int_constant | float_constant) basla <statement> {|<statement>}  bitir 
+--> eger(<booleanCon> --> konkatli = id ) basla <statement> {|<statement>}  bitir 
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla <statement> {|<statement>}  bitir 
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla <statement> bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla <additionop> --> topla (id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (int_constant ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , { <multiplicationop> }) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , { <multiplicationop> --> carp (id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}   ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})  }) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}   ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})  }) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (int_constant ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})  }) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})  }) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})  }) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 ,<substractionop>) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 ,<substractionop> --> cikar (id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}   ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) ) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar (id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}   ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) ) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( int_constant ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) ) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) ) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) ) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , { <divisionop> })) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , { <divisionop> --> bol (id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}   ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) })) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , bol (id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}   ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) })) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , bol (int_constant ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) })) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , bol 8 ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) })) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , bol 8 , id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) })) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , bol 8 , { | <additionop> }))) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , bol 8 , { | <additionop> --> topla (id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})  }))) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , bol 8 , topla (id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})  }))) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , bol 8 , topla ( int_constant  ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})  }))) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , bol 8 , topla ( 1 ',' id | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})))) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , bol 8 , topla ( 1 , int_constant )))) bitir
+--> eger(<booleanCon> --> konkatli = konkatli2 ) basla topla (1 , carp (2 , cikar ( 17 , bol 8 , topla ( 1 , 2 ))))) bitir
+
+
+
+
+
+
+
+
+
+

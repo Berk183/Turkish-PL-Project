@@ -1,0 +1,52 @@
+ata(numara1,48)
+
+<assignop> --> ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')'
+ --> ata '(' numara1 , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')'
+ --> ata '(' numara1 , int_constant ')'
+ --> ata '(' numara1 , 48 ')'
+
+------------------------------------------------------------------------------------------------------------------------------
+
+ata(toplam,topla(numara1,numara2))
+
+<assignop> --> ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')'
+ --> ata '(' numara1 , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')'
+ --> ata '(' numara1 , <additionop> ')'
+ --> ata '(' numara1 , topla '(' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ')' ')'
+ --> ata '(' numara1 , topla '(' id { '[' int_constant | id ']'} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ')' ')'
+ --> ata '(' numara1 , topla '(' numara1 ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ')' ')'
+ --> ata '(' numara1 , topla '(' numara1 ',' id { '[' int_constant | id ']'} ')' 
+ --> ata '(' numara1 , topla '(' numara1 ',' numara2 ')' ')' 
+
+------------------------------------------------------------------------------------------------------------------------------
+
+eger(toplam = 70) basla ondalik sayi; ondalik sayi2; ata(sai2,2.2) bitir
+
+<ifStatement> --> eger'('<booleanCon>')' basla <statement> bitir
+ --> eger '(' <booleanCon> ')' basla <statement> bitir
+ --> eger '(' {dogru | yanlis |} id | int_constant | float_constant  '=' {| '!=' | '<' | '>' }  id | int_constant | float_constant ')' basla <statement> bitir
+ --> eger '('  id '=' {| '!=' | '<' | '>' }  id | int_constant | float_constant ')' basla <statement> bitir
+ --> eger '('  toplam '=' {| '!=' | '<' | '>' }  id | int_constant | float_constant ')' basla <statement> bitir
+ --> eger '('  toplam '=' id | int_constant | float_constant ')' basla <statement> bitir
+ --> eger '('  toplam '=' int_constant ')' basla <statement> bitir
+ --> eger '('  toplam '=' 70 ')' basla <statement> bitir
+ --> eger '('  toplam '=' 70 ')' basla <typeCheck> <assignop> <additionop> <multiplicationop> <substractionop> <divisionop> <fladditionop> <flsubstractionop> <flmultiplicationop> <fldivisionop> bitir
+ --> eger '('  toplam '=' 70 ')' basla <assignop> bitir
+ --> eger '('  toplam '=' 70 ')' basla ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' bitir
+ --> eger '('  toplam '=' 70 ')' basla ata '(' sayi2 , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' bitir
+ --> eger '('  toplam '=' 70 ')' basla ata '(' sayi2 , float_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' bitir
+ --> eger '('  toplam '=' 70 ')' basla ata '(' sayi2 , float_constant>')' bitir
+ --> eger '('  toplam '=' 70 ')' basla ata '(' sayi2 , 2.2 ')' bitir
+
+------------------------------------------------------------------------------------------------------------------------------
+ 
+ata(sayi,toplaond(2.3,sayi2))
+
+<assignop> --> ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')'
+ --> ata '(' sayi , id { '[' int_constant | id ']'} {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')'
+ --> ata '(' sayi , <fladditionop> ')'
+ --> ata '(' sayi ,  toplaond '(' id | float_constant { | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}   ',' id | float_constant { | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' ')'
+ --> ata '(' sayi ,  toplaond '(' float_constant  ',' id | float_constant { | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' ')'
+ --> ata '(' sayi ,  toplaond '(' 2.3 ',' id | float_constant { | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' ')'
+ --> ata '(' sayi ,  toplaond '(' 2.3 ',' id ')' ')'
+ --> ata '(' sayi ,  toplaond '(' 2.3 ',' sayi2 ')' ')'

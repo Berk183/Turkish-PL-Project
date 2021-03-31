@@ -1,0 +1,18 @@
+tamsayi numara1;
+tamsayi numara2;
+tamsayi toplam;
+
+ata(numara1,48)
+ata(numara2,22)
+
+ata(toplam,topla(numara1,numara2))
+
+ondalik sayi;
+ondalik sayi2;
+
+eger(toplam = 70)
+basla
+ata(sayi2,2.2)
+bitir
+
+ata(sayi,toplaond(2.3,sayi2))

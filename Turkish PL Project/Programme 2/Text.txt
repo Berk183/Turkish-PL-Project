@@ -1,0 +1,25 @@
+dogruluk sart;
+ata(sart,dogru)
+
+tamsayi arr1[5];
+tamsayi arrdeger;
+ata(arrdeger,0);
+tamsayi deger;
+ata(deger,4)
+
+iken(arrdeger < 5)
+basla
+ata(arr1[arrdeger],deger)
+ata(deger,topla(deger,2))
+ata(arrdeger,topla(arrdeger,1))
+bitir
+
+eger(sart)
+basla
+topla(arr1[0],arr1[3])
+bitir
+
+eger(yanlis)
+basla
+topla(arr[2],arr[4]))
+bitir

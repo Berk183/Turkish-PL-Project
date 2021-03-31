@@ -1,0 +1,119 @@
+
+dogruluk sart;
+
+<typeCheck> --> tamsayi | ondalik | karakter | dogruluk | id {| '[' int_constant | id ']' } ';' 
+ --> dogruluk id {| '[' int_constant | id ']' } ';' 
+ --> dogruluk sart {| '[' int_constant | id ']' } ';' 
+ --> dogruluk sart ';' 
+
+------------------------------------------------------------------------------------------------------------------------------
+
+ata(sart,dogru)
+
+<assignop> --> ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')'
+ --> ata '(' sart , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')'
+ --> ata '(' sart , dogru ')'
+
+------------------------------------------------------------------------------------------------------------------------------
+ 
+tamsayi arr1[5];
+
+<typeCheck> --> tamsayi | ondalik | karakter | dogruluk id {| '[' int_constant | id ']' } ';' 
+ --> tamsayi id {| '[' int_constant | id ']' } ';' 
+ --> tamsayi arr1 {| '[' int_constant | id ']' } ';' 
+ --> tamsayi arr1 '[' int_constant | id ']' ';' 
+ --> tamsayi arr1 '[' int_constant']' ';' 
+ --> tamsayi arr1 '[' 5 ']' ';' 
+
+------------------------------------------------------------------------------------------------------------------------------
+
+ata(arrdeger,0)
+
+<assignop> --> ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+ --> ata '(' arrdeger , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' 
+ --> ata '(' arrdeger ,  int_constant ')' 
+ --> ata '(' arrdeger ,  0 ')' 
+
+------------------------------------------------------------------------------------------------------------------------------
+
+iken(arrdeger < 5 ) basla ata(arr1[arrdeger],deger) ata(deger,topla(deger,2)) ata(arrdeger,topla(arrdeger,1)) bitir4
+
+<whilestatement> --> iken(<booleanCon>) basla <statement> {|<statement>} <whilestatement> bitir
+ --> iken'(' {dogru | yanlis |} id | int_constant | float_constant  '=' {| '!=' | '<' | '>' }  id | int_constant | float_constant) basla <statement> {|<statement>} <whilestatement> bitir
+ --> iken'(' id  '=' {| '!=' | '<' | '>' }  id | int_constant | float_constant) basla <statement> {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '=' {| '!=' | '<' | '>' }  id | int_constant | float_constant) basla <statement> {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  id | int_constant | float_constant) basla <statement> {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  int_constant ')' basla <statement> {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <statement> {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <typeCheck> <assignop> <additionop> <multiplicationop> <substractionop> <divisionop> <fladditionop> <flsubstractionop> <flmultiplicationop> <fldivisionop> {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' id ']' , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , id')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' <statement> {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , <additionop> ')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})  ')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})  ')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ',' int_constant  ')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' {|<statement>} <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' <statement> {|<statement>}  <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' <typeCheck> <assignop> <additionop> <multiplicationop> <substractionop> <divisionop> <fladditionop> <flsubstractionop> <flmultiplicationop> <fldivisionop> {|<statement>}  <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' <assignop>  {|<statement>}  <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' ata '(' id { '[' int_constant | id ']'} , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' {|<statement>}  <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' ata '(' arrdeger , id { '[' int_constant | id ']'} | dogru | yanlis {| int_constant | float_constant} { | <additionop> | <substractionop> | <multiplicationop> | <divisionop> | <fladditionop> | <flsubstractionop> | <flmultiplicationop> | <fldivisionop>}')' {|<statement>}  <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' ata '(' arrdeger , <additionop> ')' {|<statement>}  <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' ata '(' arrdeger , topla '(' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})')' {|<statement>}  <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' ata '(' arrdeger , topla '(' arrdeger ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>})')' {|<statement>}  <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' ata '(' arrdeger , topla '(' arrdeger ',' int_constant ')' ')' {|<statement>}  <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' ata '(' arrdeger , topla '(' arrdeger ',' 1 ')' ')' {|<statement>}  <whilestatement> bitir
+ --> iken'(' arrdeger '<'  5 ')' basla <assignop> --> ata '('arr1 '[' arrdeger ']' , deger ')' ata '(' deger , topla '(' deger  ','  2')' ata '(' arrdeger , topla '(' arrdeger ',' 1 ')' ')' <whilestatement> bitir
+
+------------------------------------------------------------------------------------------------------------------------------
+eger(sart)basla topla(arr1[0],arr1[3])bitir
+
+<ifStatement> --> eger(<booleanCon>) basla <statement> {|<statement>}  bitir
+--> eger(<booleanCon>) basla <statement> {|<statement>}  bitir
+--> eger(<booleanCon> --> { ( dogru | yanlis |} id | int_constant | float_constant  '=' {| '!=' | '<' | '>' }  id | int_constant | float_constant) basla <statement> {|<statement>}  bitir
+--> eger(<booleanCon> --> ( id ) basla <statement> {|<statement>}  bitir
+--> eger(<booleanCon> --> (sart) basla <statement> {|<statement>}  bitir
+--> eger(<booleanCon> --> (sart) basla <statement> bitir
+--> eger(<booleanCon> --> (sart) basla <additionop> --> topla (id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir 
+--> eger(<booleanCon> --> (sart) basla topla (arr1 { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1 '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1 [ int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1 [ int_constant ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1 [ 0 ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1[0] | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>} ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1[0] ',' id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1[0] , id { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1[0] , arr1 { '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1[0] , arr1 '[' int_constant | id ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1[0] , arr1 [ int_constant ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1[0] , arr1 [ 3 ']'} | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1[0] , arr1 [ 3 ] } | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1[0] , arr1[3] | int_constant { | <additionop> | <substractionop> | <multiplicationop> | <divisionop>}) bitir
+--> eger(<booleanCon> --> (sart) basla topla (arr1[0] , arr1[3]) bitir
+------------------------------------------------------------------------------------------------------------------------------
+
+eger(yanlis) basla topla(arr1[2],arr1[4]) bitir
+
+<ifStatement> --> eger '(' <booleanCon> ')' basla <statement> {|<statement>} bitir
+ --> eger'(' <booleanCon> ')' basla <statement> {|<statement>} bitir
+ --> eger'(' {dogru | yanlis |} id | int_constant | float_constant  '=' {| '!=' | '<' | '>' }  id | int_constant | float_constant ')' basla <statement> {|<statement>} bitir
+ --> eger'(' yanlis ')' basla <statement> {|<statement>} bitir
+ --> eger'(' yanlis ')' 
+
+
+  
+  
+
+
+
+ 
+
